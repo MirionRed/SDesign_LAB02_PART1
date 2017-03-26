@@ -1,11 +1,11 @@
-package account.domain;
+package bankingapp.domain;
 
 import java.util.ArrayList;
 
-public class AccountList {
+public class Bank {
 	private static ArrayList<Account> accountList;
 	
-	public AccountList(){
+	public Bank(){
 		accountList = new ArrayList<Account>();
 	}
 	

@@ -1,4 +1,4 @@
-package account.domain;
+package bankingapp.domain;
 
 public class Checking extends Account{
 	public Checking(String name, double balance){

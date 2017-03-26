@@ -1,4 +1,4 @@
-package account.domain;
+package bankingapp.domain;
 
 public class Account {
 	private int accountNumber;

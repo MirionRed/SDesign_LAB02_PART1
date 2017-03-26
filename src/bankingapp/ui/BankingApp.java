@@ -1,18 +1,18 @@
-package account.ui;
+package bankingapp.ui;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import account.domain.Account;
-import account.domain.AccountList;
-import account.domain.Checking;
-import account.domain.Savings;
+import bankingapp.domain.Account;
+import bankingapp.domain.Bank;
+import bankingapp.domain.Checking;
+import bankingapp.domain.Savings;
 
 public class BankingApp {
-	private static AccountList accounts;
+	private static Bank accounts;
 	private static Scanner scanner;
 	
 	public static void main(String[] args){
-		accounts = new AccountList();
+		accounts = new Bank();
 		scanner = new Scanner(System.in);
 		
 		int choice;
@@ -34,6 +34,7 @@ public class BankingApp {
 				case 2: accountOperation(1); break;
 				case 3: accountOperation(2); break;
 				case 4: searchAccount(); break;
+				case 5: break;
 				default: error = true; break;
 			}
 			
