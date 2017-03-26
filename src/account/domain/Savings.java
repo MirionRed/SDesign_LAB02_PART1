@@ -1,3 +1,4 @@
+package account.domain;
 
 public class Savings extends Account {
 	public Savings (String name, double balance){

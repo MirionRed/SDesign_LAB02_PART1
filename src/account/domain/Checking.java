@@ -1,3 +1,4 @@
+package account.domain;
 
 public class Checking extends Account{
 	public Checking(String name, double balance){

@@ -1,3 +1,4 @@
+package account.domain;
 
 public class Account {
 	private int accountNumber;

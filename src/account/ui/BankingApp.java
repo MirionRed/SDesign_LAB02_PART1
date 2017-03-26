@@ -1,12 +1,18 @@
+package account.ui;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import account.domain.Account;
+import account.domain.AccountList;
+import account.domain.Checking;
+import account.domain.Savings;
+
 public class BankingApp {
-	private static ArrayList<Account> accountList;
+	private static AccountList accounts;
 	private static Scanner scanner;
 	
 	public static void main(String[] args){
-		accountList = new ArrayList<Account>();
+		accounts = new AccountList();
 		scanner = new Scanner(System.in);
 		
 		int choice;
@@ -51,25 +57,14 @@ public class BankingApp {
 		System.out.print("Enter type (1 for Checking or 2 for Savings): ");
 		int type = Integer.parseInt(scanner.next());
 		
-		Account aAccount = null;
-		if (type == 1 || type == 2){
-			if(1 == type){
-				aAccount = new Checking(name, balance);
-			}else{
-				aAccount = new Savings(name, balance);
-			}
-			accountList.add(aAccount);
-			System.out.println("Account " + name + " added");
-			System.out.println();
-		}else{
-			System.out.println("Invalid input");
-		}
+		accounts.addAccount(name, balance, type);
 	}
 	
 	public static int searchAccount(){
 		int accountNumber = 0;
-		if(accountList.size() == 0){
+		if(accounts.isEmpty()){
 			System.out.println("The list is empty");
+			return accountNumber;
 		} else {
 			boolean found = false;
 			int i = 0;
@@ -78,23 +73,8 @@ public class BankingApp {
 			scanner = new Scanner(System.in);
 			String name = scanner.nextLine();
 			
-			while(i<accountList.size() && !found){
-				Account aAccount = accountList.get(i);
-				if (aAccount.getName().equals(name)){
-					System.out.println("Account is in list");
-					System.out.println("Amount left: " + aAccount.getBalance());
-					accountNumber = i;
-					found = true;
-				} else {
-					i++;
-				}
-			}
-			
-			if(found == false){
-				System.out.println("Account is not in list");
-			}
+			return accounts.searchAccount(name);
 		}
-		return accountNumber;
 	}
 	
 	public static void accountOperation(int operation){
@@ -102,11 +82,7 @@ public class BankingApp {
 		System.out.print("Enter amount: ");	
 		scanner = new Scanner(System.in);
 		double amount = scanner.nextDouble();
-		if(operation == 1){
-			accountList.get(accountNumber).Deposit(amount);
-		}else{
-			accountList.get(accountNumber).Withdraw(amount);
-		}
-		System.out.println("Operation complete, remaining amount: " + accountList.get(accountNumber).getBalance());
+		
+		accounts.accountOperation(operation, accountNumber, amount);
 	}
 }
